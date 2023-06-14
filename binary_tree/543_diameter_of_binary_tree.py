@@ -5,10 +5,10 @@ from typing import Optional
 
 Given the root of a binary tree, return the length of the diameter of the tree.
 
-The diameter of a binary tree is the length of the longest path between any two nodes in a tree. This path may or may not pass through the root.
+The diameter of a binary tree is the length of the longest path between any two nodes in a tree.
+This path may or may not pass through the root.
 
 The length of a path between two nodes is represented by the number of edges between them.
-
 
 Constraints:
 
@@ -24,49 +24,52 @@ class TreeNode:
         self.left = left
         self.right = right
 
-
 class Solution:
-    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
-        ret = [0]
 
-        def bfs(node):
+    def __init__(self):
+        self.maximum = 0
+
+    def diameterOfBinaryTree(self, root: Optional[TreeNode]) -> int:
+        def dfs(node):
             if not node: return 0
 
-            left = bfs(node.left)
-            right = bfs(node.right)
+            left = dfs(node.left)
+            right = dfs(node.right)
 
-            ret[0] = max(ret[0], left + right)
-            return max(left, right) + 1
+            self.maximum = max(self.maximum, left + right)
 
-        bfs(root)
-        return ret[0]
+            return 1 + max(left, right)
+
+        dfs(root)
+
+        return self.maximum
 
 
-class DiameterOfBinaryTreeTests(unittest.TestCase):
+
+class TestSolution(unittest.TestCase):
+
     def test_diameterOfBinaryTree(self):
-        solution = Solution()
+        # Test case 1: Balanced tree with diameter 3
+        root1 = TreeNode(1)
+        root1.left = TreeNode(2)
+        root1.right = TreeNode(3)
+        root1.left.left = TreeNode(4)
+        root1.left.right = TreeNode(5)
+        self.assertEqual(Solution().diameterOfBinaryTree(root1), 3)
 
-        # Test case 1: Empty tree
-        root = None
-        expected_output = 0
-        self.assertEqual(solution.diameterOfBinaryTree(root), expected_output)
+        # Test case 2: Tree with diameter 4, right-skewed
+        root2 = TreeNode(1)
+        root2.right = TreeNode(2)
+        root2.right.right = TreeNode(3)
+        root2.right.right.right = TreeNode(4)
+        self.assertEqual(Solution().diameterOfBinaryTree(root2), 3)
 
-        # Test case 2: Tree with a single node
-        root = TreeNode(5)
-        expected_output = 0
-        self.assertEqual(solution.diameterOfBinaryTree(root), expected_output)
+        # Test case 3: Tree with diameter 0, single node
+        root3 = TreeNode(1)
+        self.assertEqual(Solution().diameterOfBinaryTree(root3), 0)
 
-        # Test case 3: Tree with multiple nodes
-        root = TreeNode(1)
-        root.left = TreeNode(2)
-        root.right = TreeNode(3)
-        root.left.left = TreeNode(4)
-        root.left.right = TreeNode(5)
-        expected_output = 3
-        self.assertEqual(solution.diameterOfBinaryTree(root), expected_output)
-
-        # Additional test cases...
-        # You can add more test cases to further validate the solution
+        # Test case 4: Empty tree
+        self.assertEqual(Solution().diameterOfBinaryTree(None), 0)
 
 if __name__ == '__main__':
     unittest.main()
