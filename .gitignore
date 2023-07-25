@@ -1,3 +1,6 @@
-.idea/
-dp/__pycache__/
-stack/__pycache__/
+.idea/ 
+dp/__pycache__/ 
+stack/__pycache__/ 
+strings/__pycache__/ 
+greedy/__pycache__/
+binary_search/__pycache__/
