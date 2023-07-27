@@ -1,5 +1,14 @@
 import random
 
+"""
+
+You have a normal shuffled deck of cards. We will draw cards 1 at a time until the entire deck is finished. 
+Before any card is drawn you may bet (or not) on whether it is red or black. 
+Construct the best strategy (win the most) regardless of card distribution.
+You have 100000 to bet with and can bet any amount / fractional amount as long as it doesn't exceed your current total
+
+"""
+
 class Deck:
     def __init__(self, num_of_cards):
         self.reds = num_of_cards // 2
