@@ -22,29 +22,27 @@ class Solution:
 
         stack = []
 
-        for asteroid in asteroids:
+        for ast in asteroids:
 
-            # positive value or empty stack array
-            if (not stack) or (asteroid > 0):
-                stack.append(asteroid)
-                continue
+            if ast > 0:
+                stack.append(ast)
+            else:
+                if (not stack) or stack[-1] < 0:
+                    stack.append(ast)
+                else:
+                    used = False
+                    while stack and stack[-1] > 0:
 
-            while True:
+                        if stack[-1] == ast * -1:
+                            stack.pop()
+                            used = True
+                            break
+                        elif stack[-1] > ast * -1:
+                            used = True
+                            break
+                        else: stack.pop()
 
-                if stack[-1] < 0:
-                    stack.append(asteroid)
-                    break
-                elif stack[-1] == abs(asteroid):
-                    stack.pop()
-                    break
-                elif stack[-1] > abs(asteroid):
-                    break
-
-                stack.pop()
-
-                if not stack:
-                    stack.append(asteroid)
-                    break
+                    if not used: stack.append(ast)
 
         return stack
 
