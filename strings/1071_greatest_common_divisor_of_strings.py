@@ -16,29 +16,30 @@ str1 and str2 consist of English uppercase letters.
 class Solution:
     def gcdOfStrings(self, str1: str, str2: str) -> str:
 
-        if len(str1) >= len(str2):
-            base, check = str1, str2
+        if len(str1) < len(str2):
+            shrt, lng = str1, str2
         else:
-            base, check = str2, str1
-        ret = ""
+            shrt, lng = str2, str1
 
-        for i in range(len(check)):
-            curr = check[:i + 1]
+        l = 0
+        for r in range(len(shrt), 0, -1):
+            curr = shrt[l:r]
+            if len(lng) % len(curr) == 0 and len(shrt) % len(curr) == 0:
+                for i in range(0, len(lng), len(curr)):
+                    unmatched = False
+                    if curr != lng[i:(i + len(curr))]:
+                        unmatched = True
+                        break
 
-            if (len(base) % len(curr)) or (len(check) % len(curr)): continue
+                    for i in range(0, len(shrt), len(curr)):
+                        if curr != shrt[i:(i + len(curr))]:
+                            unmatched = True
+                            break
 
-            error_found = False
-            for j in range(0, len(base), len(curr)):
+                if not unmatched:
+                    return curr
 
-                if (base[j:j + len(curr)] != curr) or (
-                        ((j + len(curr)) <= len(check)) and (check[j:j + len(curr)] != curr)):
-                    error_found = True
-                    break
-
-            if not error_found: ret = curr
-
-        return ret
-
+        return ""
 
 class SolutionTestCase(unittest.TestCase):
     def setUp(self):
