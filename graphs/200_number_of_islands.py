@@ -41,54 +41,6 @@ class Solution:
 
         return islands
 
-        # PREVIOUS OLD SOLUTION
-        # islands = 0
-        # x = len(grid[0])-1
-        # y = len(grid)-1
-
-        # seen = []
-
-        # for i in range(len(grid)):
-
-        #     for j in range(len(grid[i])):
-
-        #         if grid[i][j] == "1":
-        #             islands += 1
-
-        #             seen = [(i, j)]
-        #             new_seen = []
-
-        #             while seen:
-        #                 for k in seen:
-
-        #                     ii = k[0]
-        #                     jj = k[1]
-
-        #                     if jj > 0:
-        #                         if grid[ii][jj-1] == "1":
-        #                             grid[ii][jj-1] = "2"
-        #                             new_seen.append((ii,jj-1))
-
-        #                     if jj < x:
-        #                         if grid[ii][jj+1] == "1":
-        #                             grid[ii][jj+1] = "2"
-        #                             new_seen.append((ii,jj+1))
-
-        #                     if ii > 0:
-        #                         if grid[ii-1][jj] == "1":
-        #                             grid[ii-1][jj] = "2"
-        #                             new_seen.append((ii-1,jj))
-
-        #                     if ii < y:
-        #                         if grid[ii+1][jj] == "1":
-        #                             grid[ii+1][jj] = "2"
-        #                             new_seen.append((ii+1,jj))
-
-        #                 seen = new_seen
-        #                 new_seen = []
-
-        # return islands
-
 
 class SolutionTests(unittest.TestCase):
 
