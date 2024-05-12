@@ -1,5 +1,5 @@
 # leetcode-algos-data-structures
 
-Backup of LeetCode answers organized by topic with unit tests and notes
+Answers organized by topic with some tests and occasional notes. Mostly Python, some Rust, Typescript
 
-![profile](https://github.com/lostintime101/leetcode-algos-data-structures/assets/92709487/448c5c81-545c-4048-952b-8c21b8cc08a9)
+![profile](https://github.com/lostintime101/leetcode-algos-data-structures/assets/92709487/552fc21f-1096-466e-ba25-8fc420a5d37c)
